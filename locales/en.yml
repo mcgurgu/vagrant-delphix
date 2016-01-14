@@ -1,0 +1,10 @@
+en:
+  vagrant_delphix:
+    action:
+      update_guests: "Updating /etc/hosts file on active guest machines..."
+      update_guest: "[%{name}] Updating /etc/hosts file..."
+      update_host: "Updating /etc/hosts file on host machine (password may be required)..."
+    config:
+      not_a_bool: "A value for %{config_key} can only be true or false, not type '%{value}'"
+      not_an_array_or_string: "A value for %{config_key} must be an Array or String, not type '%{is_class}'"
+      not_a_proc: "A value for %{config_key} must be a Proc, not type '%{is_class}'"
