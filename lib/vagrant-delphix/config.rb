@@ -24,6 +24,8 @@ module VagrantPlugins
       end
 
       def validate(machine)
+        puts "+++ VALIDATE +++"
+        puts "--- #{@enabled}, url=#{@engine_url}"
         errors = []
 
         #errors << validate_bool('hostmanager.enabled', @enabled)

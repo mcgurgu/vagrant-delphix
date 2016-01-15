@@ -8,6 +8,15 @@ VAGRANTFILE_API_VERSION = "2"
 VB_MEMORY=1024
 VB_CPUS=1
 
+# generic setup
+DOMAIN_NAME="delphix.local"
+NODE_NAME="vagrant"
+
+DELPHIX_ENGINE_IP ||= ENV['DELPHIX_ENGINE_IP'] || '172.16.138.157'
+VMWARE_NETWORK_ADAPTER ||= ENV['VMWARE_NETWORK_ADAPTER'] || 'vmnet8'
+
+IP_BASE = DELPHIX_ENGINE_IP.split('.')[0..2].join('.')
+
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   
   # Every Vagrant environment requires a box to build off of.
@@ -19,10 +28,17 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.cpus = VB_CPUS
   end
   
-  # disable typical plug-ins
-  if Vagrant.has_plugin?("vagrant-delphix") then
-    # manage /etc/hosts on both host & guests
-    puts "Plugin installed."
+  # network setup
+  public_ipv4 = "#{IP_BASE}.42"
+  config.vm.hostname = "#{NODE_NAME}.#{DOMAIN_NAME}"
+  config.vm.network "public_network", ip: public_ipv4, bridge: VMWARE_NETWORK_ADAPTER
+  
+  #config.delphix.engine_url = "http://172.16.138.157"
+  config.delphix.enabled = true
+  config.delphix do |de|
+    engine_url = "http://172.16.138.157"
   end
+  
+  config.vm.provision "shell", path: "foo.sh"
   
 end

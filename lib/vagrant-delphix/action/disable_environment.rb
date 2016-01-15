@@ -14,9 +14,10 @@ module VagrantPlugins
 
         def call(env)
           # skip if machine is not active on destroy action
-          return @app.call(env) if !@machine.id && env[:machine_action] == :destroy
+          #return @app.call(env) if !@machine.id && env[:machine_action] == :destroy
 
           puts "+++ DISABLE +++"
+          @app.call(env)
         end
         
       end # end class

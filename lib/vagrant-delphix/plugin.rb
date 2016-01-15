@@ -2,6 +2,7 @@ require 'vagrant-delphix/action'
 
 module VagrantPlugins
   module Delphix
+    
     class Plugin < Vagrant.plugin('2')
       name 'HostManager'
       description <<-DESC
@@ -36,10 +37,6 @@ module VagrantPlugins
         ::Vagrant::Config::V2::DummyConfig.new
       end
 
-      command(:delphix) do
-        require_relative 'command'
-        Command
-      end
     end
   end
 end

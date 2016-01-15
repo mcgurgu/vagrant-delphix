@@ -3,10 +3,9 @@ require 'vagrant-delphix/version'
 require 'vagrant-delphix/plugin'
 require 'vagrant-delphix/errors'
 
-puts "+++ DELPHIX +++"
-
 module VagrantPlugins
   module Delphix
+    
     def self.source_root
       @source_root ||= Pathname.new(File.expand_path('../../', __FILE__))
     end
