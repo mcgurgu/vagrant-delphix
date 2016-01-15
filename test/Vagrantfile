@@ -33,12 +33,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.hostname = "#{NODE_NAME}.#{DOMAIN_NAME}"
   config.vm.network "public_network", ip: public_ipv4, bridge: VMWARE_NETWORK_ADAPTER
   
-  #config.delphix.engine_url = "http://172.16.138.157"
+  #config the delphix provisioner
   config.delphix.enabled = true
-  config.delphix do |de|
-    engine_url = "http://172.16.138.157"
-  end
+  config.delphix.engine_url = "http://172.16.138.157"
+  config.delphix.user = 'delphix_admin'
+  config.delphix.password = 'delphix'
   
+  # prepare the VM
   config.vm.provision "shell", path: "foo.sh"
+  
+  # create a new environment in the Delphix Engine
+  config.vm.provision :delphix
   
 end
