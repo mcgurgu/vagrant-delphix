@@ -6,7 +6,7 @@ module VagrantPlugins
   module DelphixEngine
     module Action
       
-      class DisableEnvironment
+      class EnableEnvironment
         include VagrantPlugins::DelphixEngine::Util
         
         def initialize(app, env)
@@ -35,7 +35,7 @@ module VagrantPlugins
           environment = environments.lookup_by_name @config.env_name
           
           # delete the environment from Delphix
-          environment.disable if environment != nil
+          environment.enable if environment != nil
           
           @app.call(env)
         end

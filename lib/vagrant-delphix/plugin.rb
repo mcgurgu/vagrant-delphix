@@ -16,18 +16,26 @@ module VagrantPlugins
         Config
       end
 
-      action_hook(:delphix, :machine_action_up) do |hook|
-        hook.after(Vagrant::Action::Builtin::Provision, Action.create_environment)
+      #action_hook(:delphix, :machine_action_up) do |hook|
+      #hook.after(Vagrant::Action::Builtin::Provision, Action.enable_environment)
+      #end
+      
+      action_hook(:delphix, :machine_action_resume) do |hook|
+        hook.after(Vagrant::Action::Builtin::Provision, Action.enable_environment)
       end
-
+      
       action_hook(:delphix, :machine_action_halt) do |hook|
+        hook.prepend(Action.disable_environment)
+      end
+      
+      action_hook(:delphix, :machine_action_suspend) do |hook|
         hook.prepend(Action.disable_environment)
       end
       
       action_hook(:delphix, :machine_action_destroy) do |hook|
         hook.prepend(Action.destroy_environment)
       end
-
+            
       provisioner(:delphix) do
         require_relative 'provisioner'
         Provisioner

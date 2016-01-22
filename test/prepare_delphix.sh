@@ -19,3 +19,6 @@ chmod 0770 $TOOLKIT_HOME
 
 # add the user to wheel, i.e. sudoer group
 sudo usermod -a -G wheel delphix
+
+# add some requ.
+sudo yum -y install glibc.i686 java-1.7.0-openjdk

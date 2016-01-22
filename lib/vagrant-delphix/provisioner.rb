@@ -1,48 +1,41 @@
 
 require 'delphix'
+require 'vagrant-delphix/util'
 
 module VagrantPlugins
   module DelphixEngine
 
     class Provisioner < Vagrant.plugin('2', :provisioner)
-
+      include VagrantPlugins::DelphixEngine::Util
+      
       def initialize(machine, config)
         super(machine, config)
         
         @config = get_config(machine)
         
-        #puts "--- #{machine.name}"
-        #puts "--- #{machine.provider_name}"
-        
-        #puts "--- #{machine.config.vm.hostname}"
-        #puts "IP #{ip = machine.provider.capability(:public_address)}"
       end
 
       def provision
+  
         # set the DE url
         Delphix.url = @config.engine_url
         Delphix.debug = @config.trace
 
         # authenticate the connection
         Delphix.authenticate!(@config.engine_user,@config.engine_password)
-
-        # ceate a new environment
-        #env = Delphix::Environment.create 'PRODUCTION', '172.16.138.101', 22, '/opt/toolkitp', 'postgres', 'postgres'
         
-        puts "---1 #{@config.user}"
-        puts "---2 #{@config.password}"
-        puts "---3 #{@config.toolkit_path}"
-        puts "---4 #{@config.engine_user}"
-        puts "---5 #{@config.engine_password}"
-        puts "---6 #{@config.engine_url}"
-      end
-      
-      private
-      
-      def get_config(machine)
-        config = machine.config.delphix
-        config.merge(machine.env.vagrantfile.config.delphix)
-        config
+        # lookup the environment
+        environments = Delphix.environments
+        environment = environments.lookup_by_name @config.env_name
+         
+        if environment == nil
+          # ceate a new environment
+          environment = Delphix::Environment.create @config.env_name, @config.env_ip, @config.env_port, @config.toolkit_path, @config.user, @config.password
+        else
+          # enable the environment
+          environment.enable
+        end
+        
       end
       
     end # end Class

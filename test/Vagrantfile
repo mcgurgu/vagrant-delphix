@@ -54,7 +54,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     node.delphix.toolkit_path = '/home/delphix/toolkit'
     
     # sexecute the Delphix provisioner
-    node.vm.provision :delphix 
+    node.vm.provision :delphix, run: "always"
     
   end
   
