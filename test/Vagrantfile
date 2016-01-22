@@ -53,8 +53,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     node.delphix.password = 'delphix'
     node.delphix.toolkit_path = '/home/delphix/toolkit'
     
-    # sexecute the Delphix provisioner
+    # execute the Delphix provisioner. 
     node.vm.provision :delphix, run: "always"
+    # option run: "always" is a MUST for now, 
+    # otherwise the environment will not be re-enabled once the VM has been shut doen ...
     
   end
   
