@@ -5,6 +5,7 @@ require 'vagrant-delphix/action/destroy_environment'
 
 module VagrantPlugins
   module Delphix
+    
     module Action
       include Vagrant::Action::Builtin
 
@@ -29,6 +30,7 @@ module VagrantPlugins
         end
       end
       
-    end
+    end # end module Action
+    
   end
 end

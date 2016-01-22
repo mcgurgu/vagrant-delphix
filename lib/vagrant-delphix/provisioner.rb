@@ -1,4 +1,6 @@
 
+require 'delphix'
+
 module VagrantPlugins
   module Delphix
 
@@ -17,6 +19,16 @@ module VagrantPlugins
       end
 
       def provision
+        # set the DE url
+        Delphix.url = @config.engine_url
+        Delphix.debug = @config.trace
+
+        # authenticate the connection
+        Delphix.authenticate!(@config.engine_user,@config.engine_password)
+
+        # ceate a new environment
+        #env = Delphix::Environment.create 'PRODUCTION', '172.16.138.101', 22, '/opt/toolkitp', 'postgres', 'postgres'
+        
         puts "---1 #{@config.user}"
         puts "---2 #{@config.password}"
         puts "---3 #{@config.toolkit_path}"

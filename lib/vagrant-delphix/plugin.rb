@@ -1,3 +1,5 @@
+
+require 'delphix'
 require 'vagrant-delphix/action'
 
 module VagrantPlugins
@@ -37,6 +39,7 @@ module VagrantPlugins
         ::Vagrant::Config::V2::DummyConfig.new
       end
 
-    end
+    end # end class Plugin
+    
   end
 end

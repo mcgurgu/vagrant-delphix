@@ -6,6 +6,7 @@ module VagrantPlugins
     class Config < Vagrant.plugin('2', :config)
       
       attr_accessor :enabled
+      attr_accessor :trace
       
       # engine access
       attr_accessor :engine_url
@@ -33,6 +34,7 @@ module VagrantPlugins
         @password         = UNSET_VALUE
         @toolkit_path     = UNSET_VALUE
         @staging          = UNSET_VALUE
+        @trace            = UNSET_VALUE
       end
 
       def finalize!
@@ -47,6 +49,7 @@ module VagrantPlugins
         @password         = nil if @password == UNSET_VALUE
         @toolkit_path     = nil if @toolkit_path == UNSET_VALUE
         @staging          = false if @staging == UNSET_VALUE
+        @trace            = false if @trace == UNSET_VALUE
       end
 
       def validate(machine)
