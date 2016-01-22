@@ -15,6 +15,7 @@ module VagrantPlugins
       # env definition
       attr_accessor :env_name
       attr_accessor :env_ip
+      attr_accessor :env_port
       attr_accessor :user
       attr_accessor :password
       attr_accessor :toolkit_path
@@ -27,6 +28,7 @@ module VagrantPlugins
         @engine_password  = UNSET_VALUE
         @env_name         = UNSET_VALUE
         @env_ip           = UNSET_VALUE
+        @env_port         = UNSET_VALUE
         @user             = UNSET_VALUE
         @password         = UNSET_VALUE
         @toolkit_path     = UNSET_VALUE
@@ -40,6 +42,7 @@ module VagrantPlugins
         @engine_password  = nil if @engine_password == UNSET_VALUE
         @env_name         = nil if @env_name == UNSET_VALUE
         @env_ip           = nil if @env_ip == UNSET_VALUE
+        @env_port         = 22 if @env_port == UNSET_VALUE
         @user             = nil if @user == UNSET_VALUE
         @password         = nil if @password == UNSET_VALUE
         @toolkit_path     = nil if @toolkit_path == UNSET_VALUE
@@ -129,6 +132,20 @@ module VagrantPlugins
                !machine.config.delphix.env_ip.kind_of?(String)
               errors << I18n.t('vagrant_delphix.config.not_a_string', {
                 :config_key => 'delphix.env_ip',
+                :is_class   => env_ip.class.to_s,
+              })
+            end
+          end
+          
+          if machine.config.delphix.env_port.nil?
+            errors << I18n.t('vagrant_delphix.config.not_defined', {
+              :config_key => 'delphix.env_port',
+            })
+          else
+            if !machine.config.delphix.env_port.nil? &&
+               !machine.config.delphix.env_port.kind_of?(Fixnum)
+              errors << I18n.t('vagrant_delphix.config.not_a_number', {
+                :config_key => 'delphix.env_port',
                 :is_class   => env_ip.class.to_s,
               })
             end

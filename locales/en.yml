@@ -7,6 +7,7 @@ en:
     config:
       not_a_bool: "A value for %{config_key} can only be true or false, not type '%{value}'"
       not_a_string: "A value for %{config_key} must be a String, not type '%{is_class}'"
+      not_a_number: "A value for %{config_key} must be a Number, not type '%{is_class}'"
       not_an_array_or_string: "A value for %{config_key} must be an Array or String, not type '%{is_class}'"
       not_a_proc: "A value for %{config_key} must be a Proc, not type '%{is_class}'"
       not_defined: "Configuration of property '%{config_key}' is missing."

@@ -47,6 +47,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # configure the Delphix provisioner
     node.delphix.env_name = "source"
     node.delphix.env_ip = public_ipv4
+    node.delphix.env_port = 22
     node.delphix.user = 'delphix'
     node.delphix.password = 'delphix'
     node.delphix.toolkit_path = '/home/delphix/toolkit'
