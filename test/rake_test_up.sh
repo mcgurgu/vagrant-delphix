@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
 
-ifconfig
+cd test
+
+vagrant up

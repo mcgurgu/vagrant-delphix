@@ -7,13 +7,30 @@ module VagrantPlugins
       def initialize(machine, config)
         super(machine, config)
         
-        @config = machine.env.vagrantfile.config.delphix
-    
+        @config = get_config(machine)
+        
+        #puts "--- #{machine.name}"
+        #puts "--- #{machine.provider_name}"
+        
+        #puts "--- #{machine.config.vm.hostname}"
+        #puts "IP #{ip = machine.provider.capability(:public_address)}"
       end
 
       def provision
-        puts "+++ PROVISION +++"
-        puts "--- #{@config.engine_url}"
+        puts "---1 #{@config.user}"
+        puts "---2 #{@config.password}"
+        puts "---3 #{@config.toolkit_path}"
+        puts "---4 #{@config.engine_user}"
+        puts "---5 #{@config.engine_password}"
+        puts "---6 #{@config.engine_url}"
+      end
+      
+      private
+      
+      def get_config(machine)
+        config = machine.config.delphix
+        config.merge(machine.env.vagrantfile.config.delphix)
+        config
       end
       
     end # end Class

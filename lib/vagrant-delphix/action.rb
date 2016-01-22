@@ -1,3 +1,4 @@
+
 require 'vagrant-delphix/action/create_environment'
 require 'vagrant-delphix/action/disable_environment'
 require 'vagrant-delphix/action/destroy_environment'

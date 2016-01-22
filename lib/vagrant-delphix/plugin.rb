@@ -34,7 +34,6 @@ module VagrantPlugins
       # Work-around for vagrant >= 1.5
       # It breaks without a provisioner config, so we provide a dummy one
       config(:delphix, :provisioner) do
-        puts "+++ C2"
         ::Vagrant::Config::V2::DummyConfig.new
       end
 
