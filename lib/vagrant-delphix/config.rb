@@ -1,7 +1,7 @@
 
 module VagrantPlugins
 
-  module Delphix
+  module DelphixEngine
 
     class Config < Vagrant.plugin('2', :config)
       

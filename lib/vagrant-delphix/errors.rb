@@ -1,6 +1,6 @@
 
 module VagrantPlugins
-  module Delphix
+  module DelphixEngine
     module Errors
     end
   end

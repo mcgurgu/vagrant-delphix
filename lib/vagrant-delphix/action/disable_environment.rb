@@ -1,7 +1,8 @@
 
 module VagrantPlugins
-  module Delphix
+  module DelphixEngine
     module Action
+      
       class DisableEnvironment
 
         def initialize(app, env)
@@ -9,7 +10,7 @@ module VagrantPlugins
           @machine = env[:machine]
           @global_env = @machine.env
           @provider = @machine.provider_name
-          @logger = Log4r::Logger.new('vagrant::delphix::create_environment')
+          @logger = Log4r::Logger.new('vagrant::delphix_engine::create_environment')
         end
 
         def call(env)

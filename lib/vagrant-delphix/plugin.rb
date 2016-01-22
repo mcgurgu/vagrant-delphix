@@ -3,10 +3,10 @@ require 'delphix'
 require 'vagrant-delphix/action'
 
 module VagrantPlugins
-  module Delphix
+  module DelphixEngine
     
     class Plugin < Vagrant.plugin('2')
-      name 'HostManager'
+      name 'DelphixEngine'
       description <<-DESC
         This plugin manages Delphix Engine
       DESC

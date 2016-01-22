@@ -2,7 +2,7 @@
 require 'delphix'
 
 module VagrantPlugins
-  module Delphix
+  module DelphixEngine
 
     class Provisioner < Vagrant.plugin('2', :provisioner)
 

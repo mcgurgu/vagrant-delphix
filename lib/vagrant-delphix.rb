@@ -4,7 +4,7 @@ require 'vagrant-delphix/plugin'
 require 'vagrant-delphix/errors'
 
 module VagrantPlugins
-  module Delphix
+  module DelphixEngine
     
     def self.source_root
       @source_root ||= Pathname.new(File.expand_path('../../', __FILE__))

@@ -4,7 +4,7 @@ require 'vagrant-delphix/action/disable_environment'
 require 'vagrant-delphix/action/destroy_environment'
 
 module VagrantPlugins
-  module Delphix
+  module DelphixEngine
     
     module Action
       include Vagrant::Action::Builtin

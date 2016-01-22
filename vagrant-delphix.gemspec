@@ -6,7 +6,7 @@ require 'vagrant-delphix/version'
 
 Gem::Specification.new do |gem|
   gem.name          = 'vagrant-delphix'
-  gem.version       = VagrantPlugins::Delphix::VERSION
+  gem.version       = VagrantPlugins::DelphixEngine::VERSION
   gem.authors       = ['Michael Kuehl']
   gem.email         = ['michael.kuehl@delphix.com']
   gem.description   = %q{A Vagrant plugin that interacts with the Delphix Engine}
