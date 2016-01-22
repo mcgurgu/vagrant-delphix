@@ -45,7 +45,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     node.vm.network "public_network", ip: public_ipv4, bridge: VMWARE_NETWORK_ADAPTER
     
     # configure the Delphix provisioner
-    node.delphix.trace = true
+    node.delphix.trace = false
     node.delphix.env_name = "source"
     node.delphix.env_ip = public_ipv4
     node.delphix.env_port = 22
