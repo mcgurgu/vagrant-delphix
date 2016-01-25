@@ -17,12 +17,12 @@ module VagrantPlugins
           @logger = Log4r::Logger.new('vagrant::delphix_engine::create_environment')
           
           @config = get_config(@machine)
-          
+        
         end
 
         def call(env)
-          # skip if machine is not active on destroy action
-          #return @app.call(env) if !@machine.id && env[:machine_action] == :destroy
+          # skip if plugin is not active on destroy action
+          return @app.call(env) if !@config.enabled
           
           # set the DE url
           Delphix.url = @config.engine_url

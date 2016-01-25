@@ -10,13 +10,14 @@ module VagrantPlugins
       
       def initialize(machine, config)
         super(machine, config)
-        
         @config = get_config(machine)
-        
       end
 
       def provision
-  
+
+        # skip if plugin is not active on destroy action
+        return if !@config.enabled
+        
         # set the DE url
         Delphix.url = @config.engine_url
         Delphix.debug = @config.trace

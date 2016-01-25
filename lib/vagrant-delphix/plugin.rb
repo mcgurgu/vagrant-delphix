@@ -15,10 +15,6 @@ module VagrantPlugins
         require_relative 'config'
         Config
       end
-
-      #action_hook(:delphix, :machine_action_up) do |hook|
-      #hook.after(Vagrant::Action::Builtin::Provision, Action.enable_environment)
-      #end
       
       action_hook(:delphix, :machine_action_resume) do |hook|
         hook.after(Vagrant::Action::Builtin::Provision, Action.enable_environment)
