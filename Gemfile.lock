@@ -24,7 +24,7 @@ GIT
 PATH
   remote: .
   specs:
-    vagrant-delphix (0.1.1)
+    vagrant-delphix (0.1.2)
       delphix_rb (~> 0.3.2)
 
 GEM
