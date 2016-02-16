@@ -18,32 +18,29 @@ VMWARE_NETWORK_ADAPTER ||= ENV['VMWARE_NETWORK_ADAPTER'] || 'vmnet8'
 IP_BASE = DELPHIX_ENGINE_IP.split('.')[0..2].join('.')
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  
+
   # Every Vagrant environment requires a box to build off of.
-  config.vm.box = "bento/centos-6.7"  
-  
+  config.vm.box = "ratchetcc/delphix"
+
   # size of the box
   config.vm.provider :virtualbox do |vb|
     vb.memory = VB_MEMORY
     vb.cpus = VB_CPUS
   end
-  
+
   #config the delphix provisioner
   config.delphix.enabled = true
-  config.delphix.engine_url = "http://172.16.138.157"
+  config.delphix.engine_url = "http://de.delphix.local"
   config.delphix.engine_user = 'delphix_admin'
   config.delphix.engine_password = 'delphix'
-  
-  # tasks for all environments
-  config.vm.provision "shell", path: "prepare_delphix.sh"
-  
+
   config.vm.define "source" do |node|
-    
+
     # networking
     public_ipv4 = "#{IP_BASE}.42"
     node.vm.hostname = "source.#{DOMAIN_NAME}"
     node.vm.network "public_network", ip: public_ipv4, bridge: VMWARE_NETWORK_ADAPTER
-    
+
     # configure the Delphix provisioner
     node.delphix.trace = false
     node.delphix.env_name = "source"
@@ -52,12 +49,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     node.delphix.user = 'delphix'
     node.delphix.password = 'delphix'
     node.delphix.toolkit_path = '/home/delphix/toolkit'
-    
-    # execute the Delphix provisioner. 
+
+    # execute the Delphix provisioner.
     node.vm.provision :delphix, run: "always"
-    # option run: "always" is a MUST for now, 
-    # otherwise the environment will not be re-enabled once the VM has been shut doen ...
-    
+    # option run: "always" is a MUST for now,
+    # otherwise the environment will not be re-enabled once the VM has been shut down ...
+
   end
-  
+
 end

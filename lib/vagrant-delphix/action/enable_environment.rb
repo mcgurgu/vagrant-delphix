@@ -31,11 +31,10 @@ module VagrantPlugins
           Delphix.authenticate!(@config.engine_user,@config.engine_password)
 
           # lookup the environment
-          environments = Delphix::Environment.list
-          environment = environments.lookup_by_name @config.env_name
+          environment = Delphix::Environment.list.lookup_by_name @config.env_name
 
-          # delete the environment from Delphix
-          environment.enable if environment != nil
+          # Enable the environment but no sources. Blocks until completion or error.
+          environment.enable.wait_for_completion if environment != nil
 
           @app.call(env)
         end

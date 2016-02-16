@@ -17,7 +17,6 @@ module VagrantPlugins
           @logger = Log4r::Logger.new('vagrant::delphix_engine::create_environment')
 
           @config = get_config(@machine)
-
         end
 
         def call(env)
@@ -32,11 +31,10 @@ module VagrantPlugins
           Delphix.authenticate!(@config.engine_user,@config.engine_password)
 
           # lookup the environment
-          environments = Delphix::Environment.list
-          environment = environments.lookup_by_name @config.env_name
+          environment = Delphix::Environment.list.lookup_by_name @config.env_name
 
-          # delete the environment from Delphix
-          environment.delete if environment != nil
+          # Delete the environment and all its sources. Blocks until completion or error.
+          environment.delete.wait_for_completion if environment != nil
 
           @app.call(env)
         end

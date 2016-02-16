@@ -26,12 +26,11 @@ module VagrantPlugins
         Delphix.authenticate!(@config.engine_user,@config.engine_password)
 
         # lookup the environment
-        environments = Delphix::Environment.list
-        environment = environments.lookup_by_name @config.env_name
+        environment = Delphix::Environment.list.lookup_by_name @config.env_name
 
         if environment == nil
-          # ceate a new environment
-          environment = Delphix::Environment.create @config.env_name, @config.env_ip, @config.env_port, @config.toolkit_path, @config.user, @config.password
+          # Ceate a new environment. This call blocks until the environment is ready or there was an error.
+          Delphix::Environment.create @config.env_name, @config.env_ip, @config.env_port, @config.toolkit_path, @config.user, @config.password
         else
           # enable the environment
           environment.enable
