@@ -16,12 +16,12 @@ Destroying the virtual machine also **deletes** all VDBs and dSources that are p
 
 Installation
 
-  vagrant plugin install vagrant-delphix
+	vagrant plugin install vagrant-delphix
 
 
 The plug-in can be updated like this:
 
-  vagrant plugin update
+	vagrant plugin update
 
 ### Configuration
 
