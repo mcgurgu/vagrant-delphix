@@ -1,12 +1,16 @@
 # vagrant-delphix
 
-`vagrant-delphix` is a Vagrant 1.1+ plug-in that helps managing environments in the Delphix Engine.
+`vagrant-delphix` is a vagrant provisioner plugin that supports the management of Delphix environments.
 
-The plug-in adds a custom Delphix Engine provisioner to Vagrant that helps creating `Environments` in Delphix when a virtual machine is provisioned.
+Features include:
+
+* create Delphix environments from a virtual machine
+* disable environments and containers (dSource or VDB) when the vm is stopped or suspended
+* delete environments and containers when the vm is destroyed
 
 The provisioner supports the lifecycle of a vagrant box by creating an environment in Delphix when the virtual machine is provisioned (`vagrant up`), it disables the environment when the virtual machine is shutdown (`vagrant halt`) and deletes the environment when the virtual machine is destroyed (`vagrant destroy`).
 
-The provisioner stops active containers (VDBs or dSources) and disables them when the virtual machine is shutdown. They remain stopped / disabled when the virtual machine is restarted !
+The provisioner stops active containers (VDBs or dSources) and disables them when the virtual machine is shutdown. They remain stopped and disabled when the virtual machine is restarted !
 
 **WARNING**
 
@@ -16,16 +20,19 @@ Destroying the virtual machine also **deletes** all VDBs and dSources that are p
 
 Installation
 
-  vagrant plugin install vagrant-delphix
-
+```shell
+$ vagrant plugin install vagrant-delphix
+```
 
 The plug-in can be updated like this:
 
-  vagrant plugin update
+```shell
+$ vagrant plugin update
+```
 
 ### Configuration
 
-The Delphix provisioner is configured using the following properties in the `Vagrantfile`
+Once the provider has been installed, you will need to configure your project to use it. The most basic Vagrantfile to create a Delphix environment is shown below:
 
 ```ruby
 
