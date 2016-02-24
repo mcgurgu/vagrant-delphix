@@ -24,12 +24,6 @@ Install the provisioner plugin using the Vagrant command-line interface:
 $ vagrant plugin install vagrant-delphix
 ```
 
-The plug-in can be updated like this:
-
-```shell
-$ vagrant plugin update
-```
-
 ### Configuration
 
 Once the provider has been installed, you will need to configure your project to use it. The most basic Vagrantfile to create a Delphix environment is shown below:
