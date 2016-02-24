@@ -14,7 +14,7 @@ The provisioner stops active containers (VDBs or dSources) and disables them whe
 
 **WARNING**
 
-Destroying the virtual machine also **deletes** all VDBs and dSources that are provisioned on the virtual machine !!
+Destroying the virtual machine **deletes** all VDBs and dSources that are provisioned on the virtual machine !!
 
 ### Installation
 
