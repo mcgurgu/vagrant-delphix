@@ -5,8 +5,8 @@
 Features include:
 
 * create Delphix environments from a virtual machine
-* disable environments and containers (dSource or VDB) when the vm is stopped or suspended
-* delete environments and containers when the vm is destroyed
+* disable environments and containers (dSource or VDB) when the virtual machine is stopped or suspended
+* delete environments and containers when the virtual machine is destroyed
 
 The provisioner supports the lifecycle of a vagrant box by creating an environment in Delphix when the virtual machine is provisioned (`vagrant up`), it disables the environment when the virtual machine is shutdown (`vagrant halt`) and deletes the environment when the virtual machine is destroyed (`vagrant destroy`).
 
