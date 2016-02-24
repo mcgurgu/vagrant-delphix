@@ -18,7 +18,7 @@ Destroying the virtual machine **deletes** all VDBs and dSources that are provis
 
 ### Installation
 
-Installation
+Install the provisioner plugin using the Vagrant command-line interface:
 
 ```shell
 $ vagrant plugin install vagrant-delphix
